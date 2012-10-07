@@ -1,0 +1,11 @@
+services:
+
+	mailform.mailformContent:
+		class: CmsModule\Content\ContentType('MailformModule\Entities\MailformEntity')
+		setup:
+			- addSection('Content', @mailform.mailformFormFactory)
+		tags: [contentType: [name: 'mail form']]
+
+includes:
+	- presenters.neon
+	- components.neon

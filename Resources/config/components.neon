@@ -1,0 +1,12 @@
+services:
+
+	mailform.mailformFormFactory:
+		class: MailformModule\Forms\MailformFormFactory
+		setup:
+			- injectFactory(@cms.admin.ajaxFormFactory)
+
+
+	mailform.mailformfrontFormFactory:
+		class: MailformModule\Forms\MailformfrontFormFactory
+		setup:
+			- injectFactory(@cms.admin.basicFormFactory)
