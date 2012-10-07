@@ -26,9 +26,11 @@ class InputEntity extends NamedEntity
 
 	const TYPE_TEXTAREA = 'textarea';
 
+	const TYPE_SELECT = 'select';
+
 	/** @var array */
 	protected static $types = array(
-		self::TYPE_TEXT, self::TYPE_TEXTAREA,
+		self::TYPE_TEXT, self::TYPE_TEXTAREA, self::TYPE_SELECT,
 	);
 
 	/**
@@ -42,6 +44,12 @@ class InputEntity extends NamedEntity
 	 * @Column(type="string")
 	 */
 	protected $type;
+
+	/**
+	 * @var string
+	 * @Column(type="string")
+	 */
+	protected $items;
 
 
 	/**
@@ -63,6 +71,7 @@ class InputEntity extends NamedEntity
 		$this->name = $name;
 		$this->type = $type ? : self::TYPE_TEXT;
 		$this->label = $label;
+		$this->items = '';
 	}
 
 
@@ -105,6 +114,24 @@ class InputEntity extends NamedEntity
 	public function getType()
 	{
 		return $this->type;
+	}
+
+
+	/**
+	 * @param string $items
+	 */
+	public function setItems($items)
+	{
+		$this->items = implode(';', $items);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getItems()
+	{
+		return explode(';', $this->items);
 	}
 
 

@@ -48,6 +48,7 @@ class MailformFormFactory extends FormFactory
 			$container->addText('name', 'Name');
 			$container->addSelect('type', 'Type')->setItems(\MailformModule\Entities\InputEntity::getTypes(), false);
 			$container->addText('label', 'Label');
+			$container->addTags('items', 'Items');
 
 			$container->addSubmit('remove', 'Remove input')
 				->addRemoveOnClick();

@@ -32,7 +32,11 @@ class MailformfrontFormFactory extends FormFactory
 		$container->addText('_email', 'E-mail');
 		$container->addText('_name', 'Name');
 		foreach ($form->data->inputs as $input) {
-			$container->add($input->getType(), $input->getName(), $input->getLabel());
+			$control = $container->add($input->getType(), $input->getName(), $input->getLabel());
+
+			if ($input->getType() === \MailformModule\Entities\InputEntity::TYPE_SELECT) {
+				$control->setItems($input->getItems(), false);
+			}
 		}
 
 		$form->addSaveButton('Send');
