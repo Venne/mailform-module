@@ -47,7 +47,11 @@ class MailformfrontFormFactory extends FormFactory
 
 			$control = $container->add($input->getType(), $input->getName(), $input->getLabel());
 
-			if ($input->getType() === InputEntity::TYPE_SELECT || $input->getType() === InputEntity::TYPE_CHECKBOX_LIST) {
+			if ($input->required) {
+				$control->setRequired(true);
+			}
+
+			if (in_array($input->getType(), array(InputEntity::TYPE_SELECT, InputEntity::TYPE_CHECKBOX_LIST, InputEntity::TYPE_RADIO_LIST))) {
 				$control->setItems($input->getItems(), false);
 			}
 		}

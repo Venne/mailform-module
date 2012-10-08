@@ -32,6 +32,8 @@ class InputEntity extends NamedEntity
 
 	const TYPE_CHECKBOX_LIST = 'checkboxList';
 
+	const TYPE_RADIO_LIST = 'radioList';
+
 	const TYPE_GROUP = 'group';
 
 	/** @var array */
@@ -41,6 +43,7 @@ class InputEntity extends NamedEntity
 		self::TYPE_SELECT => 'select',
 		self::TYPE_CHECKBOX => 'checkbox',
 		self::TYPE_CHECKBOX_LIST => 'checkbox list',
+		self::TYPE_RADIO_LIST => 'radio list',
 		self::TYPE_GROUP => 'group',
 	);
 
