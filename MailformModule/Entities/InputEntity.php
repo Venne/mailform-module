@@ -67,6 +67,13 @@ class InputEntity extends NamedEntity
 
 
 	/**
+	 * @var boolean
+	 * @Column(type="boolean")
+	 */
+	protected $required;
+
+
+	/**
 	 * @var MailformEntity
 	 * @ManyToOne(targetEntity="MailformEntity", inversedBy="inputs")
 	 * @JoinColumn(onDelete="CASCADE")
@@ -86,6 +93,7 @@ class InputEntity extends NamedEntity
 		$this->type = $type ? : self::TYPE_TEXT;
 		$this->label = $label;
 		$this->items = '';
+		$this->required = false;
 	}
 
 
@@ -146,6 +154,24 @@ class InputEntity extends NamedEntity
 	public function getItems()
 	{
 		return explode(';', $this->items);
+	}
+
+
+	/**
+	 * @param boolean $required
+	 */
+	public function setRequired($required)
+	{
+		$this->required = $required;
+	}
+
+
+	/**
+	 * @return boolean
+	 */
+	public function getRequired()
+	{
+		return $this->required;
 	}
 
 

@@ -37,8 +37,10 @@ class MailformfrontFormFactory extends FormFactory
 		$container = $form->addContainer('_inputs');
 		$container->setCurrentGroup($form->addGroup());
 
-		$container->addText('_email', 'E-mail');
-		$container->addText('_name', 'Name');
+		$container->addText('_email', 'E-mail')
+			->addRule($form::EMAIL)
+			->setRequired(true);
+		$container->addText('_name', 'Name')->setRequired(true);
 		foreach ($form->data->inputs as $input) {
 			if ($input->getType() === InputEntity::TYPE_GROUP) {
 				$container->setCurrentGroup($form->addGroup($input->getName()));
