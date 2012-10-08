@@ -28,9 +28,20 @@ class InputEntity extends NamedEntity
 
 	const TYPE_SELECT = 'select';
 
+	const TYPE_CHECKBOX = 'checkbox';
+
+	const TYPE_CHECKBOX_LIST = 'checkboxList';
+
+	const TYPE_GROUP = 'group';
+
 	/** @var array */
 	protected static $types = array(
-		self::TYPE_TEXT, self::TYPE_TEXTAREA, self::TYPE_SELECT,
+		self::TYPE_TEXT => 'text',
+		self::TYPE_TEXTAREA => 'textarea',
+		self::TYPE_SELECT => 'select',
+		self::TYPE_CHECKBOX => 'checkbox',
+		self::TYPE_CHECKBOX_LIST => 'checkbox list',
+		self::TYPE_GROUP => 'group',
 	);
 
 	/**
@@ -100,7 +111,7 @@ class InputEntity extends NamedEntity
 	{
 		$type = $type ? : self::TYPE_TEXT;
 
-		if (array_search($type, self::$types) === false) {
+		if (!isset(self::$types[$type])) {
 			throw new \Nette\InvalidArgumentException("Type '{$type}' does not exist.");
 		}
 

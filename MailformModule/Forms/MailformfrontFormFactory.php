@@ -14,12 +14,19 @@ namespace MailformModule\Forms;
 use Venne;
 use Venne\Forms\Form;
 use DoctrineModule\Forms\FormFactory;
+use MailformModule\Entities\InputEntity;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  */
 class MailformfrontFormFactory extends FormFactory
 {
+	protected function getControlExtensions()
+	{
+		return array_merge(parent::getControlExtensions(), array(
+			new \FormsModule\ControlExtensions\ControlExtension(),
+		));
+	}
 
 
 	/**
@@ -28,17 +35,24 @@ class MailformfrontFormFactory extends FormFactory
 	public function configure(Form $form)
 	{
 		$container = $form->addContainer('_inputs');
+		$container->setCurrentGroup($form->addGroup());
 
 		$container->addText('_email', 'E-mail');
 		$container->addText('_name', 'Name');
 		foreach ($form->data->inputs as $input) {
+			if ($input->getType() === InputEntity::TYPE_GROUP) {
+				$container->setCurrentGroup($form->addGroup($input->getName()));
+				continue;
+			}
+
 			$control = $container->add($input->getType(), $input->getName(), $input->getLabel());
 
-			if ($input->getType() === \MailformModule\Entities\InputEntity::TYPE_SELECT) {
+			if ($input->getType() === InputEntity::TYPE_SELECT || $input->getType() === InputEntity::TYPE_CHECKBOX_LIST) {
 				$control->setItems($input->getItems(), false);
 			}
 		}
 
+		$form->addGroup();
 		$form->addSaveButton('Send');
 	}
 

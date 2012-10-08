@@ -46,7 +46,7 @@ class MailformFormFactory extends FormFactory
 		$items = $form->addMany('inputs', function (\Nette\Forms\Container $container) use ($group) {
 			$container->setCurrentGroup($group);
 			$container->addText('name', 'Name');
-			$container->addSelect('type', 'Type')->setItems(\MailformModule\Entities\InputEntity::getTypes(), false);
+			$container->addSelect('type', 'Type', \MailformModule\Entities\InputEntity::getTypes());
 			$container->addText('label', 'Label');
 			$container->addTags('items', 'Items');
 
