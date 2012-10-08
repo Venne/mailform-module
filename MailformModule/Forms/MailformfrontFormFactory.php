@@ -81,6 +81,11 @@ class MailformfrontFormFactory extends FormFactory
 			if (substr($key, 0, 1) == '_') {
 				continue;
 			}
+
+			if (is_array($val)) {
+				$val = implode(' ; ', $val);
+			}
+
 			$message .= "$key: $val\n";
 		}
 
