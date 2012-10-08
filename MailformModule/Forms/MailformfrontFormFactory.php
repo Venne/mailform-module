@@ -54,7 +54,11 @@ class MailformfrontFormFactory extends FormFactory
 			}
 
 			if (in_array($input->getType(), array(InputEntity::TYPE_SELECT, InputEntity::TYPE_CHECKBOX_LIST, InputEntity::TYPE_RADIO_LIST))) {
-				$control->setItems($input->getItems(), false);
+				$items = array();
+				foreach ($input->getItems() as $item) {
+					$items[$item] = $item;
+				}
+				$control->setItems($items);
 			}
 		}
 
