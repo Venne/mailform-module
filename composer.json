@@ -1,31 +1,30 @@
 {
-	"name": "venne/mailform-module",
-	"description": "Mailform module",
-	"keywords": ["cms", "nette", "venne", "module"],
-	"type": "venne-module",
-	"authors": [
+	"name":"venne/mailform-module",
+	"description":"Mailform module",
+	"keywords":["cms", "nette", "venne", "module"],
+	"version":"2.0.0",
+	"authors":[
 		{
-			"name": "Josef Kříž",
-			"homepage": "http://josef-kriz.cz"
+			"name":"Josef Kříž",
+			"homepage":"http://josef-kriz.cz"
 		}
 	],
-	"require": {
-		"php" : ">=5.3.2",
-		"venne/cms-module" : "2.0.x-dev"
+	"require":{
+		"php":">=5.3.2",
+		"venne/cms-module":"2.0.x-dev"
 	},
-	"autoload": {
-		"psr-0": { "MailformModule": "" }
+	"autoload":{
+		"psr-0":{
+			"MailformModule":""
+		}
 	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "2.0.x-dev"
+	"extra":{
+		"branch-alias":{
+			"dev-master":"2.0.x-dev"
 		},
-		"venne": {
-			"installers": [
-				"DoctrineModule\\Composer\\Installers\\DoctrineInstaller"
-			],
-			"configuration": {
-				"includes": [
+		"venne":{
+			"configuration":{
+				"includes":[
 					"%modules.mailform.path%/Resources/config/config.neon"
 				]
 			}
