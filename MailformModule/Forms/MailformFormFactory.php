@@ -45,7 +45,6 @@ class MailformFormFactory extends FormFactory
 		/** @var $items \Nette\Forms\Container */
 		$items = $form->addMany('inputs', function (\Nette\Forms\Container $container) use ($group) {
 			$container->setCurrentGroup($group);
-			$container->addText('name', 'Name');
 			$container->addSelect('type', 'Type', \MailformModule\Entities\InputEntity::getTypes());
 			$container->addText('label', 'Label');
 			$container->addCheckbox('required', 'Required');

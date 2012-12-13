@@ -41,13 +41,13 @@ class MailformfrontFormFactory extends FormFactory
 			->addRule($form::EMAIL)
 			->setRequired(true);
 		$container->addText('_name', 'Name')->setRequired(true);
-		foreach ($form->data->inputs as $input) {
+		foreach ($form->data->inputs as $key => $input) {
 			if ($input->getType() === InputEntity::TYPE_GROUP) {
-				$container->setCurrentGroup($form->addGroup($input->getName()));
+				$container->setCurrentGroup($form->addGroup($input->getLabel()));
 				continue;
 			}
 
-			$control = $container->add($input->getType(), $input->getName(), $input->getLabel());
+			$control = $container->add($input->getType(), 'input_' . $key, $input->getLabel());
 
 			if ($input->required) {
 				$control->setRequired(true);
@@ -76,17 +76,21 @@ class MailformfrontFormFactory extends FormFactory
 	{
 		$values = $form['_inputs']->getValues();
 
-		$message = '';
-		foreach ($values as $key => $val) {
-			if (substr($key, 0, 1) == '_') {
+		$message = "Name: {$values['_name']}\n";
+		$message .= "E-mail: {$values['_email']}\n";
+		foreach ($form->data->inputs as $key => $input) {
+			if ($input->getType() === InputEntity::TYPE_GROUP) {
+				$message .= "\n{$input->getLabel()}\n-----------------------\n";
 				continue;
 			}
+
+			$val = $values['input_' . $key];
 
 			if (is_array($val)) {
 				$val = implode(' ; ', $val);
 			}
 
-			$message .= "$key: $val\n";
+			$message .= "{$input->getLabel()}: {$val}\n";
 		}
 
 		$mail = new \Nette\Mail\Message();

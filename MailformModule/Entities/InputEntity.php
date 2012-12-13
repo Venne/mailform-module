@@ -12,14 +12,14 @@
 namespace MailformModule\Entities;
 
 use Venne;
-use DoctrineModule\Entities\NamedEntity;
+use DoctrineModule\Entities\IdentifiedEntity;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  * @Entity(repositoryClass="\DoctrineModule\Repositories\BaseRepository")
  * @Table(name="mailformInput")
  */
-class InputEntity extends NamedEntity
+class InputEntity extends IdentifiedEntity
 {
 
 	const TYPE_TEXT = 'text';
@@ -51,13 +51,13 @@ class InputEntity extends NamedEntity
 	 * @var string
 	 * @Column(type="string")
 	 */
-	protected $label;
+	protected $type;
 
 	/**
 	 * @var string
 	 * @Column(type="string")
 	 */
-	protected $type;
+	protected $label;
 
 	/**
 	 * @var string
@@ -86,10 +86,9 @@ class InputEntity extends NamedEntity
 	 * @param null $type
 	 * @param null $label
 	 */
-	public function __construct(MailformEntity $mailform = NULL, $name = NULL, $type = NULL, $label = NULL)
+	public function __construct(MailformEntity $mailform = NULL, $type = NULL, $label = NULL)
 	{
 		$this->mailform = $mailform;
-		$this->name = $name;
 		$this->type = $type ? : self::TYPE_TEXT;
 		$this->label = $label;
 		$this->items = '';
