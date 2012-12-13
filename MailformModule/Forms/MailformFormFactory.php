@@ -12,6 +12,7 @@
 namespace MailformModule\Forms;
 
 use Venne;
+use MailformModule\Entities\InputEntity;
 use Venne\Forms\Form;
 use DoctrineModule\Forms\FormFactory;
 
@@ -43,12 +44,27 @@ class MailformFormFactory extends FormFactory
 		$group = $form->addGroup('Inputs');
 
 		/** @var $items \Nette\Forms\Container */
-		$items = $form->addMany('inputs', function (\Nette\Forms\Container $container) use ($group) {
+		$items = $form->addMany('inputs', function (\Nette\Forms\Container $container) use ($group, $form) {
 			$container->setCurrentGroup($group);
-			$container->addSelect('type', 'Type', \MailformModule\Entities\InputEntity::getTypes());
 			$container->addText('label', 'Label');
-			$container->addCheckbox('required', 'Required');
+			$container->addSelect('type', 'Type', InputEntity::getTypes())
+				->addCondition($form::IS_IN, array(
+					InputEntity::TYPE_CHECKBOX_LIST,
+					InputEntity::TYPE_RADIO_LIST,
+					InputEntity::TYPE_SELECT)
+			)
+				->toggle("frm{$form->getUniqueId()}-inputs-{$container->getName()}-items-pair")
+				->endCondition()
+				->addCondition($form::IS_IN, array(
+					InputEntity::TYPE_CHECKBOX,
+					InputEntity::TYPE_TEXT, InputEntity::TYPE_TEXTAREA,
+					InputEntity::TYPE_CHECKBOX_LIST,
+					InputEntity::TYPE_RADIO_LIST,
+					InputEntity::TYPE_SELECT)
+			)
+				->toggle("frm{$form->getUniqueId()}-inputs-{$container->getName()}-required-pair");
 			$container->addTags('items', 'Items');
+			$container->addCheckbox('required', 'Required');
 
 			$container->addSubmit('remove', 'Remove input')
 				->addRemoveOnClick();
