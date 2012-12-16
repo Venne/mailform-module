@@ -13,7 +13,8 @@ namespace MailformModule\Presenters;
 
 use Venne;
 use CmsModule\Content\Presenters\PagePresenter;
-use MailformModule\Forms\MailformfrontFormFactory;
+use MailformModule\Components\MailControl;
+use Nette\Callback;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
@@ -21,28 +22,34 @@ use MailformModule\Forms\MailformfrontFormFactory;
 class MailformPresenter extends PagePresenter
 {
 
-	/** @var MailformfrontFormFactory */
-	protected $formFactory;
+	/** @var Callback */
+	protected $mailControlFactory;
 
 
 	/**
-	 * @param \MailformModule\Forms\MailformfrontFormFactory $formFactory
+	 * @param \Nette\Callback $mailControlFactory
 	 */
-	public function injectFormFactory(MailformfrontFormFactory $formFactory)
+	public function __construct(Callback $mailControlFactory)
 	{
-		$this->formFactory = $formFactory;
+		parent::__construct();
+
+		$this->mailControlFactory = $mailControlFactory;
 	}
 
 
-	public function createComponentForm()
+	/**
+	 * @return MailControl
+	 */
+	protected function createComponentForm()
 	{
-		$form = $this->formFactory->invoke($this->page);
-		$form->onSuccess[] = $this->formSuccess;
-		return $form;
+		/** @var $control MailControl */
+		$control = $this->mailControlFactory->invoke($this->page->mailform);
+		$control->onSuccess[] = $this->formSuccess;
+		return $control;
 	}
 
 
-	public function formSuccess()
+	public function formSuccess(MailControl $control)
 	{
 		$this->flashMessage('Message has been sent', 'success');
 		$this->redirect('this');

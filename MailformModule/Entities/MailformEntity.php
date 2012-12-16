@@ -12,21 +12,20 @@
 namespace MailformModule\Entities;
 
 use Venne;
-use CmsModule\Content\Entities\PageEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use DoctrineModule\Entities\IdentifiedEntity;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  * @Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
- * @Table(name="mailformPage")
- * @DiscriminatorEntry(name="mailformPage")
+ * @Table(name="mailformMailform")
  */
-class MailformEntity extends PageEntity
+class MailformEntity extends IdentifiedEntity
 {
 
 	/**
 	 * @var ArrayCollection|InputEntity[]
-	 * @OneToMany(targetEntity="InputEntity", mappedBy="mailform", cascade={"persist"})
+	 * @OneToMany(targetEntity="InputEntity", mappedBy="parent", cascade={"persist"})
 	 */
 	protected $inputs;
 
@@ -40,17 +39,57 @@ class MailformEntity extends PageEntity
 	 * @var string
 	 * @Column(type="string")
 	 */
+	protected $recipient = '';
+
+	/**
+	 * @var string
+	 * @Column(type="string")
+	 */
 	protected $subject;
+
+
+	/**
+	 * @var string
+	 * @Column(type="text")
+	 */
+	protected $template = 'Name: {$name}
+E-mail: {$email}
+
+{foreach $inputs as $input}
+{if $input[\'entity\']->getType() === \MailformModule\Entities\InputEntity::TYPE_GROUP}
+
+{$input[\'entity\']->getLabel()}
+{=str_repeat("-", strlen($input[\'entity\']->getLabel()))}
+
+{else}
+{$input[\'entity\']->getLabel()}: {$input[\'value\']}
+{/if}
+{/foreach}
+';
+
+	/**
+	 * @var bool
+	 * @Column(type="boolean")
+	 */
+	protected $sendCopyToSender = true;
+
+	/**
+	 * @var string
+	 * @Column(type="text")
+	 */
+	protected $copyHeader = 'Original message:
+
+';
 
 
 	public function __construct()
 	{
 		parent::__construct();
 
-		$this->mainRoute->type = 'Mailform:Default:default';
 		$this->emails = '';
 		$this->subject = '';
 
+		$this->inputs = new ArrayCollection;
 		$this->inputs[] = new InputEntity($this, 'text', InputEntity::TYPE_TEXTAREA, 'Text');
 	}
 
@@ -92,6 +131,24 @@ class MailformEntity extends PageEntity
 
 
 	/**
+	 * @param string $recipient
+	 */
+	public function setRecipient($recipient)
+	{
+		$this->recipient = $recipient;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getRecipient()
+	{
+		return $this->recipient;
+	}
+
+
+	/**
 	 * @param string $subject
 	 */
 	public function setSubject($subject)
@@ -106,5 +163,59 @@ class MailformEntity extends PageEntity
 	public function getSubject()
 	{
 		return $this->subject;
+	}
+
+
+	/**
+	 * @param string $template
+	 */
+	public function setTemplate($template)
+	{
+		$this->template = $template;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getTemplate()
+	{
+		return $this->template;
+	}
+
+
+	/**
+	 * @param boolean $sendCopyToSender
+	 */
+	public function setSendCopyToSender($sendCopyToSender)
+	{
+		$this->sendCopyToSender = $sendCopyToSender;
+	}
+
+
+	/**
+	 * @return boolean
+	 */
+	public function getSendCopyToSender()
+	{
+		return $this->sendCopyToSender;
+	}
+
+
+	/**
+	 * @param string $copyHeader
+	 */
+	public function setCopyHeader($copyHeader)
+	{
+		$this->copyHeader = $copyHeader;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getCopyHeader()
+	{
+		return $this->copyHeader;
 	}
 }

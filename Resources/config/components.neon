@@ -10,3 +10,9 @@ services:
 		class: MailformModule\Forms\MailformfrontFormFactory
 		setup:
 			- injectFactory(@cms.admin.basicFormFactory)
+
+factories:
+	mailform.mailControl:
+		class: MailformModule\Components\MailControl(%mailformEntity%)
+		parameters: [mailformEntity]
+		tags: [component]

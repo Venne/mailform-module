@@ -76,9 +76,9 @@ class InputEntity extends IdentifiedEntity
 	/**
 	 * @var MailformEntity
 	 * @ManyToOne(targetEntity="MailformEntity", inversedBy="inputs")
-	 * @JoinColumn(onDelete="CASCADE")
+	 * @JoinColumn(referencedColumnName="id", onDelete="CASCADE")
 	 */
-	protected $mailform;
+	protected $parent;
 
 
 	/**
@@ -86,9 +86,9 @@ class InputEntity extends IdentifiedEntity
 	 * @param null $type
 	 * @param null $label
 	 */
-	public function __construct(MailformEntity $mailform = NULL, $type = NULL, $label = NULL)
+	public function __construct(MailformEntity $parent = NULL, $type = NULL, $label = NULL)
 	{
-		$this->mailform = $mailform;
+		$this->parent = $parent;
 		$this->type = $type ? : self::TYPE_TEXT;
 		$this->label = $label;
 		$this->items = '';
@@ -175,20 +175,20 @@ class InputEntity extends IdentifiedEntity
 
 
 	/**
-	 * @param \MailformModule\Entities\MailformEntity $mailform
+	 * @param \MailformModule\Entities\MailformEntity $parent
 	 */
-	public function setMailform($mailform)
+	public function setParent($parent)
 	{
-		$this->mailform = $mailform;
+		$this->parent = $parent;
 	}
 
 
 	/**
 	 * @return \MailformModule\Entities\MailformEntity
 	 */
-	public function getMailform()
+	public function getParent()
 	{
-		return $this->mailform;
+		return $this->parent;
 	}
 
 

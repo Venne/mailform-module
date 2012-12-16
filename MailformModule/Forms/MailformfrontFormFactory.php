@@ -13,7 +13,7 @@ namespace MailformModule\Forms;
 
 use Venne;
 use Venne\Forms\Form;
-use DoctrineModule\Forms\FormFactory;
+use Venne\Forms\FormFactory;
 use MailformModule\Entities\InputEntity;
 
 /**
@@ -64,44 +64,5 @@ class MailformfrontFormFactory extends FormFactory
 
 		$form->addGroup();
 		$form->addSaveButton('Send');
-	}
-
-
-	public function handleSave(Form $form)
-	{
-	}
-
-
-	public function handleSuccess(Form $form)
-	{
-		$values = $form['_inputs']->getValues();
-
-		$message = "Name: {$values['_name']}\n";
-		$message .= "E-mail: {$values['_email']}\n";
-		foreach ($form->data->inputs as $key => $input) {
-			if ($input->getType() === InputEntity::TYPE_GROUP) {
-				$message .= "\n{$input->getLabel()}\n-----------------------\n";
-				continue;
-			}
-
-			$val = $values['input_' . $key];
-
-			if (is_array($val)) {
-				$val = implode(' ; ', $val);
-			}
-
-			$message .= "{$input->getLabel()}: {$val}\n";
-		}
-
-		$mail = new \Nette\Mail\Message();
-		$mail->setFrom("{$values['_name']} <{$values['_email']}>");
-
-		foreach ($form->data->emails as $email) {
-			$mail->addTo($email);
-		}
-
-		$mail->setSubject($form->data->subject);
-		$mail->setBody($message);
-		$mail->send();
 	}
 }

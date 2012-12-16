@@ -1,7 +1,7 @@
 services:
 
 	mailform.mailformContent:
-		class: CmsModule\Content\ContentType('MailformModule\Entities\MailformEntity')
+		class: CmsModule\Content\ContentType('MailformModule\Entities\PageEntity')
 		setup:
 			- addSection('Content', @mailform.mailformFormFactory)
 		tags: [contentType: [name: 'mail form']]
