@@ -26,7 +26,12 @@
 			"configuration":{
 				"includes":[
 					"%modules.mailform.path%/Resources/config/config.neon"
-				]
+				],
+				"translator":{
+					"dictionaries":[
+						"%modules.mailform.path%/Resources/translations"
+					]
+				}
 			}
 		}
 	}
