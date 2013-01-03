@@ -12,19 +12,20 @@
 namespace MailformModule\Entities;
 
 use Venne;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
- * @Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
- * @Table(name="mailformPage")
- * @DiscriminatorEntry(name="mailformPage")
+ * @ORM\Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
+ * @ORM\Table(name="mailformPage")
+ * @ORM\DiscriminatorEntry(name="mailformPage")
  */
 class PageEntity extends \CmsModule\Content\Entities\PageEntity
 {
 
 	/**
 	 * @var MailformEntity
-	 * @OneToOne(targetEntity="MailformEntity", cascade={"all"})
+	 * @ORM\OneToOne(targetEntity="MailformEntity", cascade={"all"})
 	 */
 	protected $mailform;
 

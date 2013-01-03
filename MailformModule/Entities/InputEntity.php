@@ -12,12 +12,13 @@
 namespace MailformModule\Entities;
 
 use Venne;
+use Doctrine\ORM\Mapping as ORM;
 use DoctrineModule\Entities\IdentifiedEntity;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
- * @Entity(repositoryClass="\DoctrineModule\Repositories\BaseRepository")
- * @Table(name="mailformInput")
+ * @ORM\Entity(repositoryClass="\DoctrineModule\Repositories\BaseRepository")
+ * @ORM\Table(name="mailformInput")
  */
 class InputEntity extends IdentifiedEntity
 {
@@ -49,34 +50,34 @@ class InputEntity extends IdentifiedEntity
 
 	/**
 	 * @var string
-	 * @Column(type="string")
+	 * @ORM\Column(type="string")
 	 */
 	protected $type;
 
 	/**
 	 * @var string
-	 * @Column(type="string")
+	 * @ORM\Column(type="string")
 	 */
 	protected $label;
 
 	/**
 	 * @var string
-	 * @Column(type="string")
+	 * @ORM\Column(type="string")
 	 */
 	protected $items;
 
 
 	/**
 	 * @var boolean
-	 * @Column(type="boolean")
+	 * @ORM\Column(type="boolean")
 	 */
 	protected $required;
 
 
 	/**
 	 * @var MailformEntity
-	 * @ManyToOne(targetEntity="MailformEntity", inversedBy="inputs")
-	 * @JoinColumn(referencedColumnName="id", onDelete="CASCADE")
+	 * @ORM\ManyToOne(targetEntity="MailformEntity", inversedBy="inputs")
+	 * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
 	 */
 	protected $parent;
 

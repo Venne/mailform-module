@@ -12,45 +12,46 @@
 namespace MailformModule\Entities;
 
 use Venne;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use DoctrineModule\Entities\IdentifiedEntity;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
- * @Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
- * @Table(name="mailformMailform")
+ * @ORM\Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
+ * @ORM\Table(name="mailformMailform")
  */
 class MailformEntity extends IdentifiedEntity
 {
 
 	/**
 	 * @var ArrayCollection|InputEntity[]
-	 * @OneToMany(targetEntity="InputEntity", mappedBy="parent", cascade={"persist"})
+	 * @ORM\OneToMany(targetEntity="InputEntity", mappedBy="parent", cascade={"persist"})
 	 */
 	protected $inputs;
 
 	/**
 	 * @var string
-	 * @Column(type="string")
+	 * @ORM\Column(type="string")
 	 */
 	protected $emails;
 
 	/**
 	 * @var string
-	 * @Column(type="string")
+	 * @ORM\Column(type="string")
 	 */
 	protected $recipient = '';
 
 	/**
 	 * @var string
-	 * @Column(type="string")
+	 * @ORM\Column(type="string")
 	 */
 	protected $subject;
 
 
 	/**
 	 * @var string
-	 * @Column(type="text")
+	 * @ORM\Column(type="text")
 	 */
 	protected $template = 'Name: {$name}
 E-mail: {$email}
@@ -69,13 +70,13 @@ E-mail: {$email}
 
 	/**
 	 * @var bool
-	 * @Column(type="boolean")
+	 * @ORM\Column(type="boolean")
 	 */
 	protected $sendCopyToSender = true;
 
 	/**
 	 * @var string
-	 * @Column(type="text")
+	 * @ORM\Column(type="text")
 	 */
 	protected $copyHeader = 'Original message:
 
