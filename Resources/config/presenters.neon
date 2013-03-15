@@ -1,4 +1,4 @@
-services:
+factories:
 
 	mailform.defaultPresenter:
 		class: MailformModule\Presenters\MailformPresenter(@mailform.mailControlFactory)
