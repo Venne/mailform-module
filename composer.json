@@ -25,13 +25,8 @@
 		"venne": {
 			"installers": ["DoctrineModule\\Module\\Installers\\DoctrineInstaller"],
 			"configuration": {
-				"includes": [
-					"%modules.mailform.path%/Resources/config/config.neon"
-				],
-				"translator": {
-					"dictionaries": [
-						"%modules.mailform.path%/Resources/translations"
-					]
+				"extensions": {
+					"mailform": "MailformModule\\DI\\MailformExtension"
 				}
 			}
 		}
