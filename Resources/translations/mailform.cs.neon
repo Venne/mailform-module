@@ -7,3 +7,5 @@ remove input: odebrat input
 'recipient name': jméno příjemce
 subject: předmět
 'mail template': šablona mailu
+send: odeslat
+message has been sent.: zpráva byla odeslána.
