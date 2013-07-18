@@ -91,7 +91,7 @@ E-mail: {$email}
 		$this->subject = '';
 
 		$this->inputs = new ArrayCollection;
-		$this->inputs[] = new InputEntity($this, 'text', InputEntity::TYPE_TEXTAREA, 'Text');
+		$this->inputs[] = new InputEntity($this, InputEntity::TYPE_TEXTAREA, 'Text');
 	}
 
 
