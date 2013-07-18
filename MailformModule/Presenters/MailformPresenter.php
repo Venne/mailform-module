@@ -43,13 +43,13 @@ class MailformPresenter extends PagePresenter
 	protected function createComponentForm()
 	{
 		/** @var $control MailControl */
-		$control = $this->mailControlFactory->invoke($this->page->mailform);
+		$control = $this->mailControlFactory->invoke($this->extendedPage->mailform);
 		$control->onSuccess[] = $this->formSuccess;
 		return $control;
 	}
 
 
-	public function formSuccess(MailControl $control)
+	public function formSuccess()
 	{
 		$this->flashMessage('Message has been sent', 'success');
 		$this->redirect('this');

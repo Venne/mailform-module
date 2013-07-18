@@ -1,5 +1,5 @@
 factories:
 
-	mailform.defaultPresenter:
+	mailform.mailformPresenter:
 		class: MailformModule\Presenters\MailformPresenter(@mailform.mailControlFactory)
 		tags: [presenter]

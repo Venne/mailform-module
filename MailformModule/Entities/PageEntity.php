@@ -11,16 +11,15 @@
 
 namespace MailformModule\Entities;
 
-use Venne;
+use CmsModule\Content\Entities\ExtendedPageEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  * @ORM\Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
  * @ORM\Table(name="mailformPage")
- * @ORM\DiscriminatorEntry(name="mailformPage")
  */
-class PageEntity extends \CmsModule\Content\Entities\PageEntity
+class PageEntity extends ExtendedPageEntity
 {
 
 	/**
@@ -30,12 +29,18 @@ class PageEntity extends \CmsModule\Content\Entities\PageEntity
 	protected $mailform;
 
 
-	public function __construct()
+	public function startup()
 	{
-		parent::__construct();
-
-		$this->mainRoute->type = 'Mailform:Default:default';
 		$this->mailform = new MailformEntity();
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getMainRouteName()
+	{
+		return 'MailformModule\Entities\RouteEntity';
 	}
 
 
