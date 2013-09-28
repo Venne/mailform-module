@@ -18,7 +18,7 @@ use DoctrineModule\Entities\IdentifiedEntity;
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  * @ORM\Entity(repositoryClass="\DoctrineModule\Repositories\BaseRepository")
- * @ORM\Table(name="mailformInput")
+ * @ORM\Table(name="mailform_input")
  */
 class InputEntity extends IdentifiedEntity
 {

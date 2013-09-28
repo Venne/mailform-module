@@ -19,7 +19,7 @@ use DoctrineModule\Entities\IdentifiedEntity;
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  * @ORM\Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
- * @ORM\Table(name="mailformMailform")
+ * @ORM\Table(name="mailform_mailform")
  */
 class MailformEntity extends IdentifiedEntity
 {

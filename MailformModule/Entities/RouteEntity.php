@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  * @ORM\Entity
- * @ORM\Table(name="mailformRoute")
+ * @ORM\Table(name="mailform_route")
  */
 class RouteEntity extends ExtendedRouteEntity
 {

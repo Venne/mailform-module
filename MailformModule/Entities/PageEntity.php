@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  * @ORM\Entity(repositoryClass="\CmsModule\Content\Repositories\PageRepository")
- * @ORM\Table(name="mailformPage")
+ * @ORM\Table(name="mailform_page")
  */
 class PageEntity extends ExtendedPageEntity
 {
@@ -29,7 +29,7 @@ class PageEntity extends ExtendedPageEntity
 	protected $mailform;
 
 
-	public function startup()
+	protected function startup()
 	{
 		$this->mailform = new MailformEntity();
 	}
