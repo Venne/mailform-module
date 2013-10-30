@@ -51,7 +51,7 @@ class MailformPresenter extends PagePresenter
 
 	public function formSuccess()
 	{
-		$this->flashMessage('Message has been sent.', 'success');
+		$this->flashMessage($this->translator->translate('Message has been sent.'), 'success');
 		$this->redirect('this');
 	}
 }
