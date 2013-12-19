@@ -9,12 +9,11 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Forms;
+namespace MailformModule\Pages\Mailform;
 
-use Venne;
 use Venne\Forms\Form;
 use DoctrineModule\Forms\FormFactory;
-use MailformModule\Forms\ControlExtensions\MailformExtension;
+use MailformModule\Pages\Mailform\Forms\ControlExtensions\MailformExtension;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>

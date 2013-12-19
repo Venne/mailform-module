@@ -9,13 +9,12 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Forms\ControlExtensions;
+namespace MailformModule\Pages\Mailform\Forms\ControlExtensions;
 
-use Venne;
 use Nette\Object;
 use Venne\Forms\IControlExtension;
 use Venne\Forms\Form;
-use MailformModule\Entities\InputEntity;
+use MailformModule\Pages\Mailform\InputEntity;
 
 /**
  * @author     Josef Kříž

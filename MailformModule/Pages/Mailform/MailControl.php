@@ -9,14 +9,11 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Components;
+namespace MailformModule\Pages\Mailform;
 
-use Venne;
 use CmsModule\Content\Control;
 use Nette\Templating\Template;
-use MailformModule\Entities\MailformEntity;
-use MailformModule\Forms\MailformfrontFormFactory;
-use Nette\Mail\Message;
+use Venne\Forms\Form;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
@@ -41,8 +38,8 @@ class MailControl extends Control
 
 
 	/**
-	 * @param \MailformModule\Entities\MailformEntity $mailformEntity
-	 * @param \MailformModule\Forms\MailformfrontFormFactory $formFactory
+	 * @param MailformEntity $mailformEntity
+	 * @param MailformfrontFormFactory $formFactory
 	 */
 	public function __construct(MailformEntity $mailformEntity, MailformfrontFormFactory $formFactory)
 	{
@@ -61,7 +58,7 @@ class MailControl extends Control
 	}
 
 
-	public function formSuccess(Venne\Forms\Form $form)
+	public function formSuccess(Form $form)
 	{
 		$mail = $this->getMail();
 		$this->onSendMessage($this, $mail);

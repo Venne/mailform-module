@@ -9,11 +9,10 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Entities;
+namespace MailformModule\Pages\Mailform;
 
-use Venne;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use DoctrineModule\Entities\IdentifiedEntity;
 
 /**
@@ -57,13 +56,15 @@ class MailformEntity extends IdentifiedEntity
 E-mail: {$email}
 
 {foreach $inputs as $input}
-{if $input[\'entity\']->getType() === \MailformModule\Entities\InputEntity::TYPE_GROUP}
+{if $input[\'entity\']->getType() === \MailformModule\Pages\Mailform\InputEntity::TYPE_GROUP}
 
-{$input[\'entity\']->getLabel()}
-{=str_repeat("-", strlen($input[\'entity\']->getLabel()))}
+{=$input[\'entity\']->getLabel()}
+{=str_repeat(\'-\', strlen($input[\'entity\']->getLabel()))}
 
 {else}
-{$input[\'entity\']->getLabel()}: {$input[\'value\']}
+
+{=$input[\'entity\']->getLabel()}: {$input[\'value\']}
+
 {/if}
 {/foreach}
 ';

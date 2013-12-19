@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Entities;
+namespace MailformModule\Pages\Mailform;
 
 use CmsModule\Content\Entities\ExtendedPageEntity;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,21 +31,14 @@ class PageEntity extends ExtendedPageEntity
 
 	protected function startup()
 	{
+		parent::startup();
+
 		$this->mailform = new MailformEntity();
 	}
 
 
 	/**
-	 * @return string
-	 */
-	public static function getMainRouteName()
-	{
-		return 'MailformModule\Entities\RouteEntity';
-	}
-
-
-	/**
-	 * @return \MailformModule\Entities\MailformEntity
+	 * @return MailformEntity
 	 */
 	public function getMailform()
 	{

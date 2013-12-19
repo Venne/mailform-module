@@ -9,9 +9,8 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Entities;
+namespace MailformModule\Pages\Mailform;
 
-use Venne;
 use Doctrine\ORM\Mapping as ORM;
 use DoctrineModule\Entities\IdentifiedEntity;
 
@@ -176,16 +175,16 @@ class InputEntity extends IdentifiedEntity
 
 
 	/**
-	 * @param \MailformModule\Entities\MailformEntity $parent
+	 * @param MailformEntity $parent
 	 */
-	public function setParent($parent)
+	public function setParent(MailformEntity $parent = NULL)
 	{
 		$this->parent = $parent;
 	}
 
 
 	/**
-	 * @return \MailformModule\Entities\MailformEntity
+	 * @return MailformEntity
 	 */
 	public function getParent()
 	{

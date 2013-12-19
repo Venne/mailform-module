@@ -9,18 +9,17 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Forms;
+namespace MailformModule\Pages\Mailform;
 
-use Venne;
 use Venne\Forms\Form;
 use Venne\Forms\FormFactory;
-use MailformModule\Entities\InputEntity;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  */
 class MailformfrontFormFactory extends FormFactory
 {
+
 	protected function getControlExtensions()
 	{
 		return array_merge(parent::getControlExtensions(), array(

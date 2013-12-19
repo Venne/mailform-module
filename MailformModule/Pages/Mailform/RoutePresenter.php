@@ -9,17 +9,15 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace MailformModule\Presenters;
+namespace MailformModule\Pages\Mailform;
 
-use Venne;
 use CmsModule\Content\Presenters\PagePresenter;
-use MailformModule\Components\MailControl;
 use Nette\Callback;
 
 /**
  * @author Josef Kříž <pepakriz@gmail.com>
  */
-class MailformPresenter extends PagePresenter
+class RoutePresenter extends PagePresenter
 {
 
 	/** @var Callback */
